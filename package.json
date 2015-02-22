@@ -1,6 +1,6 @@
 {
   "name": "webrtc-explorer-browser-process",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "job scheduler, using browser resources, leveraging webrtc-explorer resource discovery capabilities",
   "main": "src/index.js",
   "scripts": {
