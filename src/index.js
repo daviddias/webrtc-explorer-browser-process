@@ -28,6 +28,14 @@ exports.participate = function(options) {
         
         if(envelope.data.type === 'task') {
             // execute task 
+            console.log('task: ', envelope);
+            //var func = eval(envelope.data.taskString);
+            console.log('DID EVAL', envelope);
+            peer.send(envelope.data.srcId, {
+                type: 'task-result',
+                result: envelope.data.taskData + 1//func(envelope.data.taskData)
+            });
+            console.log('DID SEND', envelope);
 
         }
 
@@ -61,8 +69,14 @@ exports.execute = function(jobData, task, nPeers, done) {
     var taskString = task.toString();
     var jobResult = [];
 
+    var gossipResult = false;
+
     peer.events.on('message', function(envelope) {
         if (envelope.data.type === 'gossip-result') {
+            if (gossipResult) {
+                return;
+            }
+            gossipResult = true;
             console.log('gossip-result', envelope);
             sendTasks(envelope.data.peersIdAvailable); 
         }
@@ -70,6 +84,7 @@ exports.execute = function(jobData, task, nPeers, done) {
             console.log('task-result');
             jobResult.push(envelope.data.result);
             if (jobResult.length === jobData.length) {
+                console.log('job done'); 
                 done(jobResult);
             }
         }
@@ -78,6 +93,19 @@ exports.execute = function(jobData, task, nPeers, done) {
     function sendTasks(peersIdAvailable) {
         console.log('send tasks now');
         console.log(peersIdAvailable);
+
+        jobData.forEach(function (taskData) {
+            var nextId = peersIdAvailable.shift();
+            peer.send(nextId, {
+                taskString: taskString,
+                taskData: taskData,
+                srcId: peerId,
+                type: 'task'
+            });
+
+            peersIdAvailable.push(nextId);
+        });
+
     }
     
     peer.send(toSuccessorId, {

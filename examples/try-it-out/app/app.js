@@ -13,7 +13,7 @@ start = function() {
     var task = function(a) {return a+1;};
     var nPeers = 2;
     
-    browserProcess.execute(data, task, nPeers, function done(){
-        
+    browserProcess.execute(data, task, nPeers, function done(result){
+        console.log('woooo!: ', result); 
     });
 };
