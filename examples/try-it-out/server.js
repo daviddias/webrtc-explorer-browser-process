@@ -4,7 +4,7 @@ var moonboots = require('moonboots_hapi');
 var server = new Hapi.Server();
 
 server.connection({
-    port: 8200
+    port: 8700
 });
 
 server.register(
@@ -22,6 +22,6 @@ server.register(
     }
   }], function () {
     server.start(function () {
-        console.log('started on: http://localhost:8200');
+        console.log('started on: http://localhost:8700');
   });
 });

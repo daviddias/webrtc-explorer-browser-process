@@ -19,6 +19,7 @@
     "localStorage": true,
     "window": true,
     "t": true,
-    "peerGlobal": true
+    "peerGlobal": true,
+    "start": true
   }
 }
