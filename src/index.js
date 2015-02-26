@@ -31,14 +31,10 @@ exports.participate = function(options) {
             console.log('task: ', envelope);
             var func = function() {return 'no func defined';};
             eval('func = ' +  envelope.data.taskString);
-            console.log('DID EVAL', envelope);
             peer.send(envelope.data.srcId, {
                 type: 'task-result',
                 result: func(envelope.data.taskData)
-                //result: envelope.data.taskData + 1//func(envelope.data.taskData)
             });
-            console.log('DID SEND', envelope);
-
         }
 
         if(envelope.data.type === 'gossip') {
