@@ -7,3 +7,4 @@ webrtc-explorer-browser-process
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/diasdavid/webrtc-explorer?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) 
 [![Dependency Status](https://david-dm.org/diasdavid/webrtc-explorer-browser-process.svg)](https://david-dm.org/diasdavid/webrtc-explorer-browser-process)
 
+[![](https://cldup.com/pgZbzoshyV-3000x3000.png)](http://www.gsd.inesc-id.pt/)
